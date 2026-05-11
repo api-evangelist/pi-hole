@@ -1,0 +1,68 @@
+aid: pi-hole
+name: Pi-hole
+description: >-
+  Pi-hole is an open source network-wide DNS sinkhole that blocks ads, tracking,
+  and unwanted domains across all devices on a local network without requiring
+  per-device software. It runs on lightweight hardware such as Raspberry Pi and
+  offers a web admin interface plus a REST API (introduced in v6 via the
+  pihole-FTL binary) for programmatic management of blocklists, allowlists,
+  groups, clients, DNS settings, and live query logs.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - DNS
+  - Ad Blocking
+  - Network Security
+  - Privacy
+  - Open Source
+  - Self-Hosted
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/pi-hole/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: pi-hole:rest-api
+    name: Pi-hole REST API
+    description: >-
+      REST API exposed by the pihole-FTL binary (v6+) for managing DNS
+      blocklists, allowlists, groups, clients, configuration, and query logs.
+      Returns JSON, uses standard HTTP verbs and status codes, and requires API
+      key authentication for most endpoints. Self-hosted OpenAPI/Swagger
+      documentation is served by each Pi-hole instance at /api/docs.
+    humanURL: https://docs.pi-hole.net/api/
+    baseURL: http://pi.hole/api
+    tags:
+      - DNS
+      - Ad Blocking
+      - Network Security
+      - Privacy
+      - Self-Hosted
+    properties:
+      - type: Documentation
+        url: https://docs.pi-hole.net/api/
+      - type: OpenAPI
+        url: http://pi.hole/api/docs
+      - type: Authentication
+        url: https://docs.pi-hole.net/api/auth/
+
+common:
+  - type: Website
+    url: https://pi-hole.net
+  - type: Documentation
+    url: https://docs.pi-hole.net
+  - type: GitHub Organization
+    url: https://github.com/pi-hole
+  - type: Source Code
+    url: https://github.com/pi-hole/pi-hole
+  - type: FTL Source
+    url: https://github.com/pi-hole/FTL
+  - type: Discourse Forum
+    url: https://discourse.pi-hole.net
+  - type: Donate
+    url: https://pi-hole.net/donate/
+  - type: Blog
+    url: https://pi-hole.net/blog/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
