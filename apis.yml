@@ -51,7 +51,7 @@ common:
     url: https://pi-hole.net
   - type: Documentation
     url: https://docs.pi-hole.net
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/pi-hole
   - type: Source Code
     url: https://github.com/pi-hole/pi-hole
