@@ -47,6 +47,8 @@ apis:
         url: https://docs.pi-hole.net/api/auth/
 
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/the-pi-hole
   - type: Website
     url: https://pi-hole.net
   - type: Documentation
