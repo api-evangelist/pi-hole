@@ -1,0 +1,210 @@
+openapi: 3.1.0
+info:
+  title: Pi-hole REST API
+  description: |
+    REST API exposed by the pihole-FTL binary (v6+) for managing DNS
+    blocklists, allowlists, groups, clients, configuration, and query logs
+    on a Pi-hole instance. Most endpoints require an authenticated session
+    (SID); obtain one via POST /api/auth and send it back on subsequent
+    requests as the `X-FTL-SID` header, the `sid` query parameter, or in the
+    request body. Each Pi-hole serves its own OpenAPI/Swagger documentation
+    at /api/docs that exactly matches its installed version.
+
+    Only a representative subset of the Pi-hole API surface (auth, groups,
+    DNS blocking, info/version) is modeled here. See the documentation
+    linked under externalDocs for the full catalog.
+  version: "6.0.0"
+  contact:
+    name: Pi-hole documentation
+    url: https://docs.pi-hole.net/api/
+  license:
+    name: EUPL-1.2
+    url: https://opensource.org/license/eupl-1-2/
+externalDocs:
+  description: Pi-hole API documentation
+  url: https://docs.pi-hole.net/api/
+servers:
+  - url: http://{piHoleHost}
+    description: Local Pi-hole instance.
+    variables:
+      piHoleHost:
+        default: pi.hole
+        description: Hostname or IP of the Pi-hole server.
+tags:
+  - name: Auth
+    description: Session authentication.
+  - name: Groups
+    description: Manage DNS blocking groups.
+  - name: DNS
+    description: DNS blocking configuration.
+  - name: Info
+    description: Pi-hole instance information.
+paths:
+  /api/auth:
+    post:
+      tags: [Auth]
+      summary: Create a session
+      description: |
+        Authenticate against Pi-hole using the admin password (or an
+        application password) and receive a session identifier (SID) plus
+        CSRF token. The SID is then sent on subsequent requests via the
+        `X-FTL-SID` header, a `sid` query parameter, the request body, or
+        a `sid` cookie (cookie requires `X-FTL-CSRF`).
+      operationId: createSession
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: Pi-hole admin or application password.
+      responses:
+        "200":
+          description: Session created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session:
+                    type: object
+                    properties:
+                      valid:
+                        type: boolean
+                      sid:
+                        type: string
+                      csrf:
+                        type: string
+                      validity:
+                        type: integer
+        "401":
+          description: Authentication failed.
+    delete:
+      tags: [Auth]
+      summary: Log out and invalidate the current session
+      operationId: deleteSession
+      responses:
+        "204":
+          description: Session invalidated.
+
+  /api/groups:
+    get:
+      tags: [Groups]
+      summary: List groups
+      operationId: listGroups
+      responses:
+        "200":
+          description: Array of groups.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Group"
+    post:
+      tags: [Groups]
+      summary: Create a group
+      operationId: createGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupCreate"
+      responses:
+        "201":
+          description: Group created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Group"
+
+  /api/groups/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    delete:
+      tags: [Groups]
+      summary: Delete a group
+      operationId: deleteGroup
+      responses:
+        "204":
+          description: Group deleted.
+
+  /api/dns/blocking:
+    get:
+      tags: [DNS]
+      summary: Get current DNS blocking status
+      operationId: getDnsBlockingStatus
+      responses:
+        "200":
+          description: Current DNS blocking status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  blocking:
+                    type: string
+                    enum: [enabled, disabled]
+                  timer:
+                    type: integer
+                    nullable: true
+
+  /api/info/version:
+    get:
+      tags: [Info]
+      summary: Get Pi-hole version information
+      operationId: getVersion
+      responses:
+        "200":
+          description: Version information for the Pi-hole instance.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: object
+                    additionalProperties: true
+
+components:
+  securitySchemes:
+    sidHeader:
+      type: apiKey
+      in: header
+      name: X-FTL-SID
+      description: Session identifier returned by POST /api/auth.
+  schemas:
+    Group:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        enabled:
+          type: boolean
+        description:
+          type: string
+    GroupCreate:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        enabled:
+          type: boolean
+        description:
+          type: string
+security:
+  - sidHeader: []
