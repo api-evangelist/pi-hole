@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pi-hole REST API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-FTL-SID",
+      "value": "{{X-FTL-SID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{piHoleHost}/api/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate against Pi-hole using the admin password (or an\napplication password) and receive a session identifier (SID) plus\nCSRF token. The SID is then sent on subsequent requests via the\n`X-FTL-SID` header, a `sid` query parameter, the request body, or\na `sid` cookie (cookie requires `X-FTL-CSRF`).\n"
+        },
+        {
+          "info": {
+            "name": "Log out and invalidate the current session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{piHoleHost}/api/auth"
+          },
+          "docs": "Log out and invalidate the current session"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{piHoleHost}/api/groups"
+          },
+          "docs": "List groups"
+        },
+        {
+          "info": {
+            "name": "Create a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{piHoleHost}/api/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a group"
+        },
+        {
+          "info": {
+            "name": "Delete a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{piHoleHost}/api/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a group"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DNS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current DNS blocking status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{piHoleHost}/api/dns/blocking"
+          },
+          "docs": "Get current DNS blocking status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pi-hole version information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{piHoleHost}/api/info/version"
+          },
+          "docs": "Get Pi-hole version information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

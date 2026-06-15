@@ -1,0 +1,828 @@
+{
+  "item": [
+    {
+      "id": "0f65b15b-92e4-4811-bf8e-167559395fff",
+      "name": "Auth",
+      "description": {
+        "content": "Session authentication.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "356e1032-a794-4e6d-b9a5-5dbc57ae25a9",
+          "name": "Create a session",
+          "request": {
+            "name": "Create a session",
+            "description": {
+              "content": "Authenticate against Pi-hole using the admin password (or an\napplication password) and receive a session identifier (SID) plus\nCSRF token. The SID is then sent on subsequent requests via the\n`X-FTL-SID` header, a `sid` query parameter, the request body, or\na `sid` cookie (cookie requires `X-FTL-CSRF`).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8410bff-7e56-455e-935f-d44aac63b740",
+              "name": "Session created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session\": {\n    \"valid\": true,\n    \"sid\": \"string\",\n    \"csrf\": \"string\",\n    \"validity\": 4302\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50e58f0e-d062-4906-a1c3-1b1b50b130b6",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78bbab27-4084-4990-b2c6-e070f1feb84e",
+          "name": "Log out and invalidate the current session",
+          "request": {
+            "name": "Log out and invalidate the current session",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a02d1e77-6548-4fad-9287-3ba0bedba893",
+              "name": "Session invalidated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5ded9cb7-e1fe-4c72-9572-0f51b959bc84",
+      "name": "Groups",
+      "description": {
+        "content": "Manage DNS blocking groups.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "853f21fe-9db1-4aac-94b8-aa8a3674858c",
+          "name": "List groups",
+          "request": {
+            "name": "List groups",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e02931b5-e277-4a0e-8e33-399314195d3a",
+              "name": "Array of groups.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"id\": 8492,\n      \"name\": \"string\",\n      \"enabled\": false,\n      \"description\": \"string\"\n    },\n    {\n      \"id\": 7106,\n      \"name\": \"string\",\n      \"enabled\": true,\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d46ceb09-88a3-4849-909d-b82b328ec5b0",
+          "name": "Create a group",
+          "request": {
+            "name": "Create a group",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9296c0c-f476-46be-bcd5-567b931dfea6",
+              "name": "Group created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3876,\n  \"name\": \"string\",\n  \"enabled\": true,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a825fb5-14ec-40e0-82ff-3c09fe694afe",
+          "name": "Delete a group",
+          "request": {
+            "name": "Delete a group",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "groups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfd409a6-af56-48dc-8299-34edcd853783",
+              "name": "Group deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "866b1e8a-3bae-454e-ae85-51afac54d899",
+      "name": "DNS",
+      "description": {
+        "content": "DNS blocking configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7207bdf9-ca46-417e-8fa3-e508e14e028f",
+          "name": "Get current DNS blocking status",
+          "request": {
+            "name": "Get current DNS blocking status",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "dns",
+                "blocking"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32bf4962-7312-4212-975e-a1186669188b",
+              "name": "Current DNS blocking status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "dns",
+                    "blocking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blocking\": \"disabled\",\n  \"timer\": 1479\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "790cc1ae-47ef-4fda-be80-3d040d0c9ce3",
+      "name": "Info",
+      "description": {
+        "content": "Pi-hole instance information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d47971f0-9763-4b38-a067-3ffdf448c384",
+          "name": "Get Pi-hole version information",
+          "request": {
+            "name": "Get Pi-hole version information",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "info",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3f61d34-32ec-4cbf-8816-2c3bce8ee2c4",
+              "name": "Version information for the Pi-hole instance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "info",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": {\n    \"key_0\": 1429.9705797371087,\n    \"key_1\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the Pi-hole server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "pi.hole",
+      "key": "piHoleHost"
+    },
+    {
+      "type": "string",
+      "value": "http://{{piHoleHost}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-FTL-SID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f7535017-9386-44f7-9797-d50d2cdf1001",
+    "name": "Pi-hole REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API exposed by the pihole-FTL binary (v6+) for managing DNS\nblocklists, allowlists, groups, clients, configuration, and query logs\non a Pi-hole instance. Most endpoints require an authenticated session\n(SID); obtain one via POST /api/auth and send it back on subsequent\nrequests as the `X-FTL-SID` header, the `sid` query parameter, or in the\nrequest body. Each Pi-hole serves its own OpenAPI/Swagger documentation\nat /api/docs that exactly matches its installed version.\n\nOnly a representative subset of the Pi-hole API surface (auth, groups,\nDNS blocking, info/version) is modeled here. See the documentation\nlinked under externalDocs for the full catalog.\n\n\nContact Support:\n Name: Pi-hole documentation",
+      "type": "text/plain"
+    }
+  }
+}
