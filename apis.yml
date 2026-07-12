@@ -47,6 +47,10 @@ apis:
         url: https://docs.pi-hole.net/api/auth/
 
 common:
+  - type: DomainSecurity
+    url: security/pi-hole-domain-security.yml
+  - type: Authentication
+    url: authentication/pi-hole-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/the-pi-hole
   - type: Website

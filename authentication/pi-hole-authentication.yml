@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pi-hole-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: sidHeader
+  type: apiKey
+  in: header
+  parameter: X-FTL-SID
+  description: Session identifier returned by POST /api/auth.
+  sources:
+  - openapi/pi-hole-openapi.yml
