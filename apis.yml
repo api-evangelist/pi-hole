@@ -47,6 +47,8 @@ apis:
         url: https://docs.pi-hole.net/api/auth/
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/pi-hole-agentic-access.yml
   - type: DomainSecurity
     url: security/pi-hole-domain-security.yml
   - type: Authentication
