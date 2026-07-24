@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Pi-hole REST Auth Info API
+  description: 'REST API exposed by the pihole-FTL binary (v6+) for managing DNS
+
+    blocklists, allowlists, groups, clients, configuration, and query logs
+
+    on a Pi-hole instance. Most endpoints require an authenticated session
+
+    (SID); obtain one via POST /api/auth and send it back on subsequent
+
+    requests as the `X-FTL-SID` header, the `sid` query parameter, or in the
+
+    request body. Each Pi-hole serves its own OpenAPI/Swagger documentation
+
+    at /api/docs that exactly matches its installed version.
+
+
+    Only a representative subset of the Pi-hole API surface (auth, groups,
+
+    DNS blocking, info/version) is modeled here. See the documentation
+
+    linked under externalDocs for the full catalog.
+
+    '
+  version: 6.0.0
+  contact:
+    name: Pi-hole documentation
+    url: https://docs.pi-hole.net/api/
+  license:
+    name: EUPL-1.2
+    url: https://opensource.org/license/eupl-1-2/
+servers:
+- url: http://{piHoleHost}
+  description: Local Pi-hole instance.
+  variables:
+    piHoleHost:
+      default: pi.hole
+      description: Hostname or IP of the Pi-hole server.
+security:
+- sidHeader: []
+tags:
+- name: Info
+  description: Pi-hole instance information.
+paths:
+  /api/info/version:
+    get:
+      tags:
+      - Info
+      summary: Get Pi-hole version information
+      operationId: getVersion
+      responses:
+        '200':
+          description: Version information for the Pi-hole instance.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: object
+                    additionalProperties: true
+components:
+  securitySchemes:
+    sidHeader:
+      type: apiKey
+      in: header
+      name: X-FTL-SID
+      description: Session identifier returned by POST /api/auth.
+externalDocs:
+  description: Pi-hole API documentation
+  url: https://docs.pi-hole.net/api/
