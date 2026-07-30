@@ -8,7 +8,19 @@ description: >-
   pihole-FTL binary) for programmatic management of blocklists, allowlists,
   groups, clients, DNS settings, and live query logs.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pi-hole.png
 tags:
   - DNS
   - Ad Blocking
@@ -22,30 +34,62 @@ created: '2026-05-11'
 modified: '2026-05-11'
 specificationVersion: '0.19'
 apis:
-  - aid: pi-hole:rest-api
-    name: Pi-hole REST API
-    description: >-
-      REST API exposed by the pihole-FTL binary (v6+) for managing DNS
-      blocklists, allowlists, groups, clients, configuration, and query logs.
-      Returns JSON, uses standard HTTP verbs and status codes, and requires API
-      key authentication for most endpoints. Self-hosted OpenAPI/Swagger
-      documentation is served by each Pi-hole instance at /api/docs.
-    humanURL: https://docs.pi-hole.net/api/
-    baseURL: http://pi.hole/api
-    tags:
-      - DNS
-      - Ad Blocking
-      - Network Security
-      - Privacy
-      - Self-Hosted
-    properties:
-      - type: Documentation
-        url: https://docs.pi-hole.net/api/
-      - type: OpenAPI
-        url: http://pi.hole/api/docs
-      - type: Authentication
-        url: https://docs.pi-hole.net/api/auth/
-
+- aid: pi-hole:pi-hole-auth-api
+  name: Pi-hole Auth API
+  description: Session authentication.
+  humanURL: https://docs.pi-hole.net/api/
+  baseURL: http://pi.hole/api
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/pi-hole-auth-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pi-hole.net/api/
+  - type: Authentication
+    url: https://docs.pi-hole.net/api/auth/
+- aid: pi-hole:pi-hole-dns-api
+  name: Pi-hole DNS API
+  description: DNS blocking configuration.
+  humanURL: https://docs.pi-hole.net/api/
+  baseURL: http://pi.hole/api
+  tags:
+  - DNS
+  properties:
+  - type: OpenAPI
+    url: openapi/pi-hole-dns-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pi-hole.net/api/
+  - type: Authentication
+    url: https://docs.pi-hole.net/api/auth/
+- aid: pi-hole:pi-hole-groups-api
+  name: Pi-hole Groups API
+  description: Manage DNS blocking groups.
+  humanURL: https://docs.pi-hole.net/api/
+  baseURL: http://pi.hole/api
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/pi-hole-groups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pi-hole.net/api/
+  - type: Authentication
+    url: https://docs.pi-hole.net/api/auth/
+- aid: pi-hole:pi-hole-info-api
+  name: Pi-hole Info API
+  description: Pi-hole instance information.
+  humanURL: https://docs.pi-hole.net/api/
+  baseURL: http://pi.hole/api
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/pi-hole-info-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pi-hole.net/api/
+  - type: Authentication
+    url: https://docs.pi-hole.net/api/auth/
 common:
   - type: AgenticAccess
     url: agentic-access/pi-hole-agentic-access.yml
