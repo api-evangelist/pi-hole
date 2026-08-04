@@ -1,0 +1,20 @@
+{
+  "provider": "pi-hole",
+  "sources": [
+    "pi-hole-auth-api-openapi.yml",
+    "pi-hole-dns-api-openapi.yml",
+    "pi-hole-groups-api-openapi.yml",
+    "pi-hole-info-api-openapi.yml"
+  ],
+  "outputs": [
+    "pi-hole-auth-api-openapi.yml",
+    "pi-hole-dns-api-openapi.yml",
+    "pi-hole-groups-api-openapi.yml",
+    "pi-hole-info-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
