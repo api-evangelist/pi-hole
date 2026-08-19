@@ -1,0 +1,309 @@
+{
+  "item": [
+    {
+      "id": "cb1fbb45-8173-41e4-9918-d68c64f3d1e8",
+      "name": "Auth",
+      "description": {
+        "content": "Session authentication.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "652b7e77-d8f2-4db5-a60f-97496b4254cb",
+          "name": "Create a session",
+          "request": {
+            "name": "Create a session",
+            "description": {
+              "content": "Authenticate against Pi-hole using the admin password (or an\napplication password) and receive a session identifier (SID) plus\nCSRF token. The SID is then sent on subsequent requests via the\n`X-FTL-SID` header, a `sid` query parameter, the request body, or\na `sid` cookie (cookie requires `X-FTL-CSRF`).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dda05436-5b4f-45a8-98ea-ea67d58e4d7c",
+              "name": "Session created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"session\": {\n    \"valid\": true,\n    \"sid\": \"string\",\n    \"csrf\": \"string\",\n    \"validity\": 942\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9493da2-e2c8-4340-937e-38c5528d7a17",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61d02166-ffc7-42dd-a617-8475306b9c11",
+          "name": "Log out and invalidate the current session",
+          "request": {
+            "name": "Log out and invalidate the current session",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "884c35be-3351-402a-9b92-446c00b17aae",
+              "name": "Session invalidated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the Pi-hole server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "pi.hole",
+      "key": "piHoleHost"
+    },
+    {
+      "type": "string",
+      "value": "http://{{piHoleHost}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-FTL-SID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3ab863d9-7dc9-490a-9fe0-937a6d13308d",
+    "name": "Pi-hole REST Auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API exposed by the pihole-FTL binary (v6+) for managing DNS\nblocklists, allowlists, groups, clients, configuration, and query logs\non a Pi-hole instance. Most endpoints require an authenticated session\n(SID); obtain one via POST /api/auth and send it back on subsequent\nrequests as the `X-FTL-SID` header, the `sid` query parameter, or in the\nrequest body. Each Pi-hole serves its own OpenAPI/Swagger documentation\nat /api/docs that exactly matches its installed version.\n\nOnly a representative subset of the Pi-hole API surface (auth, groups,\nDNS blocking, info/version) is modeled here. See the documentation\nlinked under externalDocs for the full catalog.\n\n\nContact Support:\n Name: Pi-hole documentation",
+      "type": "text/plain"
+    }
+  }
+}

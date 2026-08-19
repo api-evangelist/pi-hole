@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "a9c279bf-8b5e-49b5-8f2c-fe148ef629d9",
+      "name": "DNS",
+      "description": {
+        "content": "DNS blocking configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51b5cdc9-b14d-4e50-852d-b7064afa7f3b",
+          "name": "Get current DNS blocking status",
+          "request": {
+            "name": "Get current DNS blocking status",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "dns",
+                "blocking"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the Pi-hole server.",
+                  "type": "any",
+                  "value": "{{piHoleHost}}",
+                  "key": "piHoleHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89109312-2574-413f-a12f-c9dc6f6a63d4",
+              "name": "Current DNS blocking status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "dns",
+                    "blocking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the Pi-hole server.",
+                      "type": "any",
+                      "value": "{{piHoleHost}}",
+                      "key": "piHoleHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-FTL-SID",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blocking\": \"enabled\",\n  \"timer\": 6802\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the Pi-hole server.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "pi.hole",
+      "key": "piHoleHost"
+    },
+    {
+      "type": "string",
+      "value": "http://{{piHoleHost}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-FTL-SID"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "159b5fce-a2f9-4732-9083-9450b1f75af8",
+    "name": "Pi-hole REST Auth DNS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API exposed by the pihole-FTL binary (v6+) for managing DNS\nblocklists, allowlists, groups, clients, configuration, and query logs\non a Pi-hole instance. Most endpoints require an authenticated session\n(SID); obtain one via POST /api/auth and send it back on subsequent\nrequests as the `X-FTL-SID` header, the `sid` query parameter, or in the\nrequest body. Each Pi-hole serves its own OpenAPI/Swagger documentation\nat /api/docs that exactly matches its installed version.\n\nOnly a representative subset of the Pi-hole API surface (auth, groups,\nDNS blocking, info/version) is modeled here. See the documentation\nlinked under externalDocs for the full catalog.\n\n\nContact Support:\n Name: Pi-hole documentation",
+      "type": "text/plain"
+    }
+  }
+}
