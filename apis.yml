@@ -32,7 +32,7 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/pi-hole/refs/heads/main/apis.yml
 created: '2026-05-11'
 modified: '2026-05-11'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: pi-hole:pi-hole-auth-api
   name: Pi-hole Auth API
