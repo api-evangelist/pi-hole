@@ -26,6 +26,13 @@ tags:
   - Ad Blocking
   - Network Security
   - Privacy
+  - Open-Source
+  - Self-Hosted
+tags_raw:
+  - DNS
+  - Ad Blocking
+  - Network Security
+  - Privacy
   - Open Source
   - Self-Hosted
 url: >-
@@ -40,6 +47,8 @@ apis:
   humanURL: https://docs.pi-hole.net/api/
   baseURL: http://pi.hole/api
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -68,6 +77,8 @@ apis:
   humanURL: https://docs.pi-hole.net/api/
   baseURL: http://pi.hole/api
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
