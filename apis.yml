@@ -38,7 +38,7 @@ tags:
   - Ad Blocking
   - Network Security
   - Privacy
-  - Open-Source
+  - Open Source
   - Self-Hosted
 tags_raw:
   - DNS
@@ -47,6 +47,7 @@ tags_raw:
   - Privacy
   - Open Source
   - Self-Hosted
+  - Open-Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/pi-hole/refs/heads/main/apis.yml
 created: '2026-05-11'

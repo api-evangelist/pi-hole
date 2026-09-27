@@ -79,22 +79,22 @@ paths:
           description: Group deleted.
 components:
   schemas:
-    GroupCreate:
+    Group:
       type: object
-      required:
-      - name
       properties:
+        id:
+          type: integer
         name:
           type: string
         enabled:
           type: boolean
         description:
           type: string
-    Group:
+    GroupCreate:
       type: object
+      required:
+      - name
       properties:
-        id:
-          type: integer
         name:
           type: string
         enabled:
