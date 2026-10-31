@@ -1,4 +1,4 @@
-# Pi-hole (pi-hole)
+# Pi-hole
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,64 +66,104 @@
 
 Pi-hole is an open source network-wide DNS sinkhole that blocks ads, tracking, and unwanted domains across all devices on a local network without requiring per-device software. It runs on lightweight hardware such as Raspberry Pi and offers a web admin interface plus a REST API (introduced in v6 via the pihole-FTL binary) for programmatic management of blocklists, allowlists, groups, clients, DNS settings, and live query logs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/pi-hole/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/pi-hole/refs/heads/main/apis.yml)
+**Areas:** DNS · Ad Blocking · Network Security · Privacy · Open Source · Self-Hosted
 
-## Scope
+## Pi-hole on APIs.io
 
-- **Type:** Index
+Everything profiled for Pi-hole is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pi-hole/](https://apis.io/providers/pi-hole/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- DNS
-- Ad Blocking
-- Network Security
-- Privacy
-- Open Source
-- Self-Hosted
+- [Pi-hole Auth API](https://apis.io/apis/pi-hole/pi-hole-auth-api/) — Session authentication.
+- [Pi-hole DNS API](https://apis.io/apis/pi-hole/pi-hole-dns-api/) — DNS blocking configuration.
+- [Pi-hole Groups API](https://apis.io/apis/pi-hole/pi-hole-groups-api/) — Manage DNS blocking groups.
+- [Pi-hole Info API](https://apis.io/apis/pi-hole/pi-hole-info-api/) — Pi-hole instance information.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-11
-- **Modified:** 2026-05-11
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Pi-hole REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-REST API exposed by the pihole-FTL binary (v6+) for managing DNS blocklists, allowlists, groups, clients, configuration, and query logs. Returns JSON, uses standard HTTP verbs and status codes, and requires API key authentication for most endpoints. Self-hosted OpenAPI/Swagger documentation is served by each Pi-hole instance at /api/docs.
+- [Pi Hole Agentic Access](https://apis.io/agentic-access/pi-hole/pi-hole-agentic-access/)
 
-- **Human URL:** [https://docs.pi-hole.net/api/](https://docs.pi-hole.net/api/)
-- **Base URL:** `http://pi.hole/api`
+#### Collections (5)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- DNS
-- Ad Blocking
-- Network Security
-- Privacy
-- Self-Hosted
+- [Pi-hole REST API](https://apis.io/collections/pi-hole/open-pi-hole/)
+- [Pi-hole REST Auth API](https://apis.io/collections/pi-hole/open-pi-hole-auth-api/)
+- [Pi-hole REST Auth DNS API](https://apis.io/collections/pi-hole/open-pi-hole-dns-api/)
+- [Pi-hole REST Auth Groups API](https://apis.io/collections/pi-hole/open-pi-hole-groups-api/)
+- [Pi-hole REST Auth Info API](https://apis.io/collections/pi-hole/open-pi-hole-info-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://docs.pi-hole.net/api/)
-- [OpenAPI](http://pi.hole/api/docs) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Authentication](https://docs.pi-hole.net/api/auth/)
-- [Postman Collection](collections/pi-hole.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pi-hole.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Pi Hole Authentication](https://apis.io/security/pi-hole/pi-hole-authentication/)
+- [Pi Hole Domain Security](https://apis.io/security/pi-hole/pi-hole-domain-security/)
 
-- [LinkedIn](https://www.linkedin.com/company/the-pi-hole)
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://pi-hole.net)
 - [Documentation](https://docs.pi-hole.net)
-- [GitHub Organization](https://github.com/pi-hole)
-- [Source  Code](https://github.com/pi-hole/pi-hole)
-- [F T L  Source](https://github.com/pi-hole/FTL)
-- [Discourse  Forum](https://discourse.pi-hole.net)
-- [Donate](https://pi-hole.net/donate/)
 - [Blog](https://pi-hole.net/blog/)
+- [GitHub](https://github.com/pi-hole)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 21.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 42.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 0.0 |
+
+**Agent readiness 17.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pi-hole/](https://apis.io/providers/pi-hole/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pi-hole: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pi-hole/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
